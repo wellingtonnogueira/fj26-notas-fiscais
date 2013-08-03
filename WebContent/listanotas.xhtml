@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui" >
+
+	<ui:composition template="/_template.xhtml">
+		<ui:define name="corpo" >
+
+			<h:form id="formProduto">
+				<h2>Notas Fiscais</h2>
+				<fieldset>
+					<legend>Lista das Notas Fiscais</legend>
+					
+					<p:dataTable value="#{listaNotasFiscaisBean.dataModel}" var="nota" paginator="true" rows="5" >
+						<p:column headerText="Número">
+							#{nota.id}
+						</p:column>
+						<p:column headerText="CNPJ">
+							#{nota.cnpj}
+						</p:column>
+						<p:column headerText="Data">
+							<h:outputLabel value="#{nota.data.time}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputLabel>
+						</p:column>
+					</p:dataTable>
+				</fieldset>
+					
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</html>

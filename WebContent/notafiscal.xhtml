@@ -4,7 +4,8 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
-		xmlns:h="http://java.sun.com/jsf/html" >
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui" >
 
 	<ui:composition template="/_template.xhtml">
 		<ui:define name="corpo" >
@@ -15,13 +16,11 @@
 					<legend>Dados da Nota</legend>
 				
 					<h:outputLabel value="CNPJ Cliente: " for="cnpj" />
-					<h:inputText id="cnpj" value="#{notaFiscalBean.notaFiscal.cnpj}" maxlength="18" />
+					<p:inputMask mask="99.999.999/9999-99" value="#{notaFiscalBean.notaFiscal.cnpj}" />					
 					
 					<h:outputLabel value="Data: " for="data" />
-					<h:inputText id="data" value="#{notaFiscalBean.notaFiscal.data.time}" maxlength="10">
-						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
-					</h:inputText>
-					
+					<p:calendar pattern="dd/MM/yyyy" value="#{notaFiscalBean.notaFiscal.data.time}" />
+
 				</fieldset>
 				<!-- Listagem dos dados cadastrados -->
 				<fieldset>
