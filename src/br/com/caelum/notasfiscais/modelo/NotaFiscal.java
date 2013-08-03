@@ -59,4 +59,9 @@ public class NotaFiscal {
 		this.itens = itens;
 	}
 
+	public void adicionaItem(Item item) {
+		this.getItens().add(item);
+		item.setNotaFiscal(this);
+	}
+
 }

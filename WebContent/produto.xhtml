@@ -3,6 +3,7 @@
 <html	xmlns="http://www.w3.org/1999/xhtml"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
 		xmlns:h="http://java.sun.com/jsf/html" >
 
 	<ui:composition template="/_template.xhtml">
@@ -22,9 +23,7 @@
 					<h:outputLabel value="Preço: " for="preco" />
 					<h:inputText id="preco"  value="#{produtoBean.produto.preco}" />
 					
-					<h:commandButton value="Gravar" action="#{produtoBean.grava}" rendered="#{empty produtoBean.produto.id}">
-						<f:ajax execute="@form" render="@form" />
-					</h:commandButton>
+					<caelum:botaoAjax label="Gravar" acao="#{produtoBean.grava}" rendered="#{empty produtoBean.produto.id}" />
 					
 					<h:commandButton value="Atualizar" action="#{produtoBean.grava}" rendered="#{not empty produtoBean.produto.id}">
 						<f:ajax execute="@form" render="@form" />

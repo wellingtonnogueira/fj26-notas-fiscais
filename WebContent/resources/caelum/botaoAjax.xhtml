@@ -1,0 +1,21 @@
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:cc="http://java.sun.com/jsf/composite"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html" >
+
+		<cc:interface>
+			<cc:attribute name="label" required="true" />
+			<cc:attribute name="acao" method-signature="void action()" />
+			<cc:attribute name="rendered" />
+		
+		</cc:interface>
+		
+		<cc:implementation>
+			<h:commandButton action="#{cc.attrs.acao}" value="#{cc.attrs.label}" rendered="#{cc.attrs.rendered}" >
+				<f:ajax execute="@form" render="@form" />
+			</h:commandButton>
+		
+		</cc:implementation>
+		
+</html>
