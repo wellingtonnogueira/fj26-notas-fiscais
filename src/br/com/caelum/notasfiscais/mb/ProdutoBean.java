@@ -37,7 +37,7 @@ public class ProdutoBean implements Serializable {
 		this.setProduto(new Produto()); //Para zerar dados da página
 		this.produtos = null;
 	}
-
+	
 	public List<Produto> getProdutos() {
 		if(this.produtos == null) {
 			this.produtos = new DAO<Produto>(Produto.class).listaTodos();

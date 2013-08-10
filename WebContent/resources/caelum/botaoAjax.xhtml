@@ -8,12 +8,13 @@
 			<cc:attribute name="label" required="true" />
 			<cc:attribute name="acao" method-signature="void action()" />
 			<cc:attribute name="rendered" />
+			<cc:attribute name="formRender" default="@form" />
 		
 		</cc:interface>
 		
 		<cc:implementation>
 			<h:commandButton action="#{cc.attrs.acao}" value="#{cc.attrs.label}" rendered="#{cc.attrs.rendered}" >
-				<f:ajax execute="@form" render="@form" />
+				<f:ajax execute="@form" render="#{cc.attrs.formRender}" />
 			</h:commandButton>
 		
 		</cc:implementation>

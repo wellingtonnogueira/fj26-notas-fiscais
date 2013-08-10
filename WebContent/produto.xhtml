@@ -20,22 +20,40 @@
 					<legend>Dados do Produto</legend>
 				
 					<h:outputLabel value="Nome: " for="nome" />
-					<h:inputText id="nome" value="#{produtoBean.produto.nome}" />
+					<h:inputText id="nome" value="#{produtoBean.produto.nome}" >
+						<f:validator validatorId="comecaComMaiuscula" />
+					</h:inputText>
 					
 					<h:outputLabel value="Descrição: " for="descricao" />
 					<p:editor id="descricao" value="#{produtoBean.produto.descricao}" />
 					
 					<h:outputLabel value="Preço: " for="preco" />
-					<h:inputText id="preco"  value="#{produtoBean.produto.preco}" />
+					<h:inputText id="preco"  value="#{produtoBean.produto.preco}" 
+						required="true" requiredMessage="Preço obrigatório"
+						validatorMessage="O valor mínimo é 0,50" >
+						
+						<f:validateDoubleRange minimum="0.50" />
+					</h:inputText>
 					
-					<caelum:botaoAjax label="Gravar" acao="#{produtoBean.grava}" rendered="#{empty produtoBean.produto.id}" />
+					<caelum:botaoAjax label="Gravar" acao="#{produtoBean.grava}" rendered="#{empty produtoBean.produto.id}" formRender=":formTabela @form" />
 					
 					<h:commandButton value="Atualizar" action="#{produtoBean.grava}" rendered="#{not empty produtoBean.produto.id}">
-						<f:ajax execute="@form" render="@form" />
+						<f:ajax execute="@form" render=":formTabela @form" />
+					</h:commandButton>
+					
+					<h:commandButton value="Cancelar"
+						action="produto?faces-redirect=true"
+						immediate="true"
+						rendered="#{not empty produtoBean.produto.id}">
+							
+							<f:ajax execute="@form" render="@form" />
 					</h:commandButton>
 					
 				</fieldset>
-						
+				
+			</h:form>
+			
+			<h:form id="formTabela">	
 				<!-- Listagem dos dados cadastrados -->
 				<h2>Listagem de Produtos</h2>
 				
@@ -47,7 +65,8 @@
 					
 					<h:column>
 						<f:facet name="header">Descrição</f:facet>
-						#{produto.descricao}
+						<!-- #{produto.descricao} -->
+						<h:outputText escape="false" value="#{produto.descricao}" />  
 					</h:column>
 					
 					<h:column>
@@ -59,7 +78,7 @@
 						<f:facet name="header">Editar</f:facet>
 						<h:commandLink value="Alterar">
 							<f:setPropertyActionListener target="#{produtoBean.produto}" value="#{produto}" />
-							<f:ajax execute="@form" render="@form" />
+							<f:ajax execute="@form" render=":formProduto" />
 						</h:commandLink>
 					</h:column>
 					
