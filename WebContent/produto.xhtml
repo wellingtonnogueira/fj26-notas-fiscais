@@ -4,6 +4,7 @@
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
+		xmlns:p="http://primefaces.org/ui"
 		xmlns:h="http://java.sun.com/jsf/html" >
 
 	<ui:composition template="/_template.xhtml">
@@ -18,7 +19,7 @@
 					<h:inputText id="nome" value="#{produtoBean.produto.nome}" />
 					
 					<h:outputLabel value="Descrição: " for="descricao" />
-					<h:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}" />
+					<p:editor id="descricao" value="#{produtoBean.produto.descricao}" />
 					
 					<h:outputLabel value="Preço: " for="preco" />
 					<h:inputText id="preco"  value="#{produtoBean.produto.preco}" />

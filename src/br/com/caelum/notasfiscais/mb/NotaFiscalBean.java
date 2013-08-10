@@ -1,6 +1,7 @@
 package br.com.caelum.notasfiscais.mb;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -28,14 +29,18 @@ public class NotaFiscalBean implements Serializable {
 		
 		notaFiscal.adicionaItem(getItem());
 		
-		setItem(new Item()); //Limpar campos.
+		//Limpar campos
+		setItem(new Item());
+		idProduto = null;
 	}
 	
 	public void gravar() {
 		DAO<NotaFiscal> dao = new DAO<>(NotaFiscal.class);
 		dao.adiciona(notaFiscal);
 		
-		notaFiscal = new NotaFiscal(); //Limpar campos
+		//Limpar campos
+		notaFiscal = new NotaFiscal();
+		idProduto = null;
 	}
 	
 	//Getters & Setters

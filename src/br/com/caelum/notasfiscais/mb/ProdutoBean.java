@@ -50,5 +50,10 @@ public class ProdutoBean implements Serializable {
 		dao.remove(produto);
 		this.produtos = null;
 	}
-
+	
+	public List<Produto> busca(String nome) {
+		DAO<Produto> dao = new DAO<>(Produto.class);
+		return dao.buscaPorNome(nome);
+	}
+	
 }

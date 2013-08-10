@@ -26,12 +26,12 @@
 				<fieldset>
 					<legend>Dados do Item</legend>
 					<h:outputLabel value="Produto: " for="produto" />
-					<h:selectOneMenu value="#{notaFiscalBean.idProduto}">
-						<f:selectItem itemLabel="Selecione..." itemValue="0" noSelectionOption="true" />
-						<f:selectItems value="#{produtoBean.produtos}" 
-						var="produto" itemValue="#{produto.id}" itemLabel="#{produto.nome}"/>
-					</h:selectOneMenu>
 					
+					<p:autoComplete value="#{notaFiscalBean.idProduto}"
+						completeMethod="#{produtoBean.busca}" minQueryLength="3"
+						var="produto" itemLabel="#{produto.nome}" 
+						itemValue="#{produto.id}" />
+					 
 					<h:outputLabel value="Quantidade: " for="quantidade" />
 					<h:inputText id="quantidade" value="#{notaFiscalBean.item.quantidade}" maxlength="10">
 						<f:convertNumber pattern="#00" />

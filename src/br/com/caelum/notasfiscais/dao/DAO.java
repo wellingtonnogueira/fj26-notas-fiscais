@@ -85,6 +85,16 @@ public class DAO<T> {
 		em.close();
 		return lista;
 	}
+	
+	public List<T> buscaPorNome(String nome) {
+		String jpql = "select p from Produto p where" +
+				" lower(p.nome) like :nome order by p.nome";
+
+		EntityManager em = new JPAUtil().getEntityManager();
+		return em.createQuery(jpql, classe)
+				.setParameter("nome", nome + "%")
+				.getResultList();
+	}
 
 
 }
