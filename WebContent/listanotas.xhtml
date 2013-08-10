@@ -20,7 +20,8 @@
 							#{nota.id}
 						</p:column>
 						<p:column headerText="CNPJ">
-							#{nota.cnpj}
+							<h:outputLabel value="#{nota.cnpj}" converter="cnpj" />
+							<!-- #{nota.cnpj} -->
 						</p:column>
 						<p:column headerText="Data">
 							<h:outputLabel value="#{nota.data.time}">
