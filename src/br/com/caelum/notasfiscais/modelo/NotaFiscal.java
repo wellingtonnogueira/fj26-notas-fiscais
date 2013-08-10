@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class NotaFiscal {
@@ -19,6 +20,7 @@ public class NotaFiscal {
 	@GeneratedValue
 	private Long id;
 
+	@Pattern(message="Informar CNPJ válido", regexp="\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}")
 	private String cnpj;
 
 	@Temporal(TemporalType.DATE)

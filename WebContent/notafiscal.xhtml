@@ -10,8 +10,10 @@
 	<ui:composition template="/_template.xhtml">
 		<ui:define name="corpo" >
 
+			
 			<h:form id="formProduto">
 				<h2>Nota Fiscal</h2>
+				<h:messages styleClass="erros"/>
 				<fieldset>
 					<legend>Dados da Nota</legend>
 				
@@ -28,8 +30,10 @@
 					<h:outputLabel value="Produto: " for="produto" />
 					
 					<p:autoComplete value="#{notaFiscalBean.idProduto}"
-						completeMethod="#{produtoBean.busca}" minQueryLength="3"
-						var="produto" itemLabel="#{produto.nome}" 
+						completeMethod="#{produtoBean.busca}"
+						minQueryLength="3"
+						var="produto" 
+						itemLabel="#{produto.nome}" 
 						itemValue="#{produto.id}" />
 					 
 					<h:outputLabel value="Quantidade: " for="quantidade" />
@@ -69,7 +73,7 @@
 										
 				</h:dataTable>
 				
-				<h:commandButton value="Gravar" action="#{notaFiscalBean.gravar}"/>
+				<h:commandButton value="Gravar" action="#{notaFiscalBean.gravar}" />
 					
 			</h:form>
 		</ui:define>
