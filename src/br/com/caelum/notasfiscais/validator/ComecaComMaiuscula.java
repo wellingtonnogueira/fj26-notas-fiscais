@@ -15,7 +15,7 @@ public class ComecaComMaiuscula implements Validator {
 			throws ValidatorException {
 		
 		if(!value.toString().matches("[A-Z].*")) {
-			throw new ValidatorException(new FacesMessage("Texto invválido"));
+			throw new ValidatorException(new FacesMessage("Primeira letra tem que ser maiúscula"));
 		}
 
 	}
