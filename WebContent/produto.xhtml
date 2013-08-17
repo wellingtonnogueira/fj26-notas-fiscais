@@ -5,6 +5,7 @@
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
 		xmlns:p="http://primefaces.org/ui"
+		xmlns:s="http://jboss.org/seam/faces"
 		xmlns:h="http://java.sun.com/jsf/html" >
 
 	<ui:composition template="/_template.xhtml">
@@ -35,6 +36,7 @@
 						<f:validateDoubleRange minimum="0.50" />
 					</h:inputText>
 					
+					<s:validateForm validatorId="nomeedescricao" />
 					<caelum:botaoAjax label="Gravar" acao="#{produtoBean.grava}" rendered="#{empty produtoBean.produto.id}" formRender=":formTabela @form" />
 					
 					<h:commandButton value="Atualizar" action="#{produtoBean.grava}" rendered="#{not empty produtoBean.produto.id}">
