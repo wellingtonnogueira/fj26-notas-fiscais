@@ -35,7 +35,7 @@ public class UsuarioExistente implements Validator, Serializable {
 
 		Usuario usuario = new Usuario();
 		usuario.setLogin(login);
-		usuario.setSenha(senha);
+		usuario.setSenha(senha); //TODO Melhorar validação removendo senha. Criar novo método no DAO que receba apenas login
 		if(dao.existe(usuario)) {
 			throw new ValidatorException(new FacesMessage("Usuario ja existe"));
 		}
