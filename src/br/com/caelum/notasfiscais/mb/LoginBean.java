@@ -2,13 +2,15 @@ package br.com.caelum.notasfiscais.mb;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import br.com.caelum.notasfiscais.dao.UsuarioDAO;
 import br.com.caelum.notasfiscais.modelo.Usuario;
 
-@ManagedBean @SessionScoped
+//@ManagedBean @SessionScoped
+@Named @SessionScoped
 public class LoginBean implements Serializable {
 
 	private static final long serialVersionUID = 3258128530136373961L;
@@ -18,8 +20,10 @@ public class LoginBean implements Serializable {
 	private String toPage = LOGIN_PAGE;
 	private boolean autenticado = false;
 	
+	@Inject
+	private UsuarioDAO dao;
+
 	public String efetuaLogin() {
-		UsuarioDAO dao = new UsuarioDAO();
 		
 		autenticado = dao.existe(usuario);
 
