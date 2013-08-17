@@ -1,9 +1,10 @@
 package br.com.caelum.notasfiscais.mb;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
 import org.primefaces.model.LazyDataModel;
 
@@ -11,9 +12,11 @@ import br.com.caelum.notasfiscais.dao.DAO;
 import br.com.caelum.notasfiscais.datamodel.NotasFiscaisDataModel;
 import br.com.caelum.notasfiscais.modelo.NotaFiscal;
 
-@ManagedBean @ViewScoped
-public class ListaNotasFiscaisBean {
+@Named @ViewScoped
+public class ListaNotasFiscaisBean implements Serializable {
 	
+	private static final long serialVersionUID = 5209918235912765710L;
+
 	private LazyDataModel<NotaFiscal> dataModel;
 	
 	public ListaNotasFiscaisBean() {

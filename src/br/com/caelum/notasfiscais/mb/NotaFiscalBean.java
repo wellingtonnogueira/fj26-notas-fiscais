@@ -1,17 +1,16 @@
 package br.com.caelum.notasfiscais.mb;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
 import br.com.caelum.notasfiscais.dao.DAO;
 import br.com.caelum.notasfiscais.modelo.Item;
 import br.com.caelum.notasfiscais.modelo.NotaFiscal;
 import br.com.caelum.notasfiscais.modelo.Produto;
 
-@ManagedBean @ViewScoped
+@Named @ViewScoped
 public class NotaFiscalBean implements Serializable {
 	
 	private static final long serialVersionUID = 740252078626496799L;

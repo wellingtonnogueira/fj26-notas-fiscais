@@ -2,32 +2,34 @@ package br.com.caelum.notasfiscais.mb;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.caelum.notasfiscais.dao.UsuarioDAO;
 import br.com.caelum.notasfiscais.modelo.Usuario;
 
-//@ManagedBean @SessionScoped
-@Named @SessionScoped
+@Named @RequestScoped
 public class LoginBean implements Serializable {
+
+	private UsuarioLogado usuarioLogado;
 
 	private static final long serialVersionUID = 3258128530136373961L;
 	private static String LOGIN_PAGE = "login";
 	
-	private Usuario usuario = new Usuario();
 	private String toPage = LOGIN_PAGE;
-	private boolean autenticado = false;
 	
+
+	public LoginBean() {
+	}
+
 	@Inject
-	private UsuarioDAO dao;
+	public LoginBean(UsuarioLogado usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
 
 	public String efetuaLogin() {
 		
-		autenticado = dao.existe(usuario);
-
-		if(!autenticado) {
+		if(!usuarioLogado.efetuaLogin()) {
 			setToPage(LOGIN_PAGE);
 		} else if(getToPage().contains("login")) {
 			setToPage("produto");
@@ -36,24 +38,17 @@ public class LoginBean implements Serializable {
 	}
 	
 	public String efetuaLogout() {
-		autenticado = false;
-		usuario.setSenha(null);
+		
+		usuarioLogado.efetuaLogout();
+		
 		setToPage(LOGIN_PAGE);
 		return "login?faces-redirect=true";
 	}
 	
 	public boolean isLogado() {
-		return autenticado;
+		return usuarioLogado.isLogado();
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 	private String getToPage() {
 		return toPage;
 	}
@@ -62,5 +57,12 @@ public class LoginBean implements Serializable {
 		this.toPage = toPage;
 	}
 	
-	
+	public Usuario getUsuario() {
+		return usuarioLogado.getUsuario();
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuarioLogado.setUsuario(usuario);
+	}
+
 }
