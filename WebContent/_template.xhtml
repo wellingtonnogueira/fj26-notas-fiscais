@@ -15,8 +15,8 @@
 	<div id="cabecalho">
 		<h:graphicImage library="imagens" name="logo-uber.png" id="logoCompany" />
 		<div id="usuarioLogado">
-			<h:form id="menu" rendered="#{loginBean.logado}">
-				Logado como #{loginBean.usuario.login}
+			<h:form id="menu" rendered="#{usuarioLogado.logado}">
+				Logado como <strong>#{usuarioLogado.usuario.login}</strong>
 				<p:menubar>
 					<p:menuitem value="Produtos" url="produto.xhtml" icon="ui-icon ui-icon-home" />
 					<p:submenu label="Notas Fiscais" icon="ui-icon ui-icon-suitcase" >

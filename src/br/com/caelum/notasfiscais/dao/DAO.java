@@ -7,6 +7,9 @@ import javax.persistence.criteria.CriteriaQuery;
 
 public class DAO<T> {
 	private final Class<T> classe;
+	
+//	@Inject
+//	EntityManager em;
 
 	public DAO(Class<T> classe) {
 		this.classe = classe;
