@@ -1,0 +1,9 @@
+/*C3*/SET SCHEMA PUBLIC
+INSERT INTO USUARIO VALUES(2,'admin','admin')
+COMMIT
+DELETE FROM USUARIO WHERE ID=1
+COMMIT
+INSERT INTO PRODUTO VALUES(1,'<h1><strong>Novo produto</strong></h1><div><strong><font color="#ff0000">Sensacional!!!</font></strong></div>','Samsung Galaxy SIII',2000.0E0)
+COMMIT
+INSERT INTO PRODUTO VALUES(2,'teste 2','Teste',1.0E0)
+COMMIT
