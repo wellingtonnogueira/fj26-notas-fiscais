@@ -91,7 +91,8 @@ public class DAO<T> {
 	
 	public List<T> buscaPorNome(String nome) {
 		String jpql = "select p from Produto p where" +
-				" lower(p.nome) like :nome order by p.nome";
+				" p.nome like :nome order by p.nome";
+//				" lower(p.nome) like :nome order by p.nome"; //função lower não funciona no HSQLDB 
 
 		EntityManager em = new JPAUtil().getEntityManager();
 		return em.createQuery(jpql, classe)
