@@ -6,7 +6,10 @@ import java.util.List;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import org.hibernate.search.annotations.IndexedEmbedded;
+
 import br.com.caelum.notasfiscais.dao.DAO;
+import br.com.caelum.notasfiscais.dao.ProdutoDAO;
 import br.com.caelum.notasfiscais.modelo.Produto;
 
 @Named @ViewScoped
@@ -15,6 +18,7 @@ public class ProdutoBean implements Serializable {
 	private static final long serialVersionUID = 1966624938216688849L;
 
 	private Produto produto = new Produto();
+	
 	private List<Produto> produtos;
 
 	public Produto getProduto() {
@@ -52,8 +56,9 @@ public class ProdutoBean implements Serializable {
 	}
 	
 	public List<Produto> busca(String nome) {
-		DAO<Produto> dao = new DAO<>(Produto.class);
-		return dao.buscaPorNome(nome);
+		ProdutoDAO dao = new ProdutoDAO();
+		return dao.buscaPorNome(nome); //TODO Trocar para busca via Hibernate Search (linha comentada abaixo)
+//		return dao.buscaTextualPorNome(nome);
 	}
 	
 }

@@ -6,9 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
 import org.hibernate.validator.constraints.NotEmpty;
 
-@Entity
+@Entity @Indexed
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = -4465951922612224346L;
@@ -16,7 +20,8 @@ public class Produto implements Serializable {
 	@Id @GeneratedValue
 	private Long id;
 
-	@NotEmpty(message="Produto deve ter um nome v√°lido")
+	@NotEmpty(message="Produto deve ter um nome v·lido")
+	@Field(index=Index.TOKENIZED, store=Store.YES)
 	private String nome;
 
 	private String descricao;

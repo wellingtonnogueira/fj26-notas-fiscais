@@ -39,7 +39,9 @@
 					<s:validateForm validatorId="nomeedescricao" />
 					<caelum:botaoAjax label="Gravar" acao="#{produtoBean.grava}" rendered="#{empty produtoBean.produto.id}" formRender=":formTabela @form" />
 					
-					<h:commandButton value="Atualizar" action="#{produtoBean.grava}" rendered="#{not empty produtoBean.produto.id}">
+					<h:commandButton value="Atualizar" 
+							action="#{produtoBean.grava}" 
+							rendered="#{not empty produtoBean.produto.id}">
 						<f:ajax execute="@form" render=":formTabela @form" />
 					</h:commandButton>
 					
