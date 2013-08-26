@@ -17,6 +17,12 @@
       <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true" />
       <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+      
+      <!-- LUCENE -->
+      <property name="hibernate.search.default.directory_provider" value="org.hibernate.search.store.FSDirectoryProvider"/>
+      <property name="hibernate.search.default.indexBase" value="WebContent/WEB-INF/lucene/indexes"/>
+	  <property name="hibernate.search.analyzer" value="org.apache.lucene.analysis.br.BrazilianAnalyzer"/>
+    
     </properties>
   </persistence-unit>
 </persistence>

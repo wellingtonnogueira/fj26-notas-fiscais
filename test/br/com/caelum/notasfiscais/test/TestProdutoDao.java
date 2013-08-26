@@ -7,17 +7,16 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.caelum.notasfiscais.dao.DAO;
+import br.com.caelum.notasfiscais.dao.ProdutoDAO;
 import br.com.caelum.notasfiscais.modelo.Produto;
-import br.com.caelum.notasfiscais.modelo.Usuario;
 
 public class TestProdutoDao {
 	
-	private DAO<Produto> dao;
+	private ProdutoDAO dao;
 	
 	@Before
 	public void createDao() {
-		dao = new DAO<>(Produto.class);
+		dao = new ProdutoDAO();
 		System.out.println("dao criado");
 	}
 
@@ -46,6 +45,19 @@ public class TestProdutoDao {
 			System.out.println(usuario.getNome());
 		}
 		System.out.println("-----");
+		
+		assertTrue(listaTodos.size() > 0);
+	}
+	
+	@Test
+	public void testBuscaTextualPorNomeCom4Caracteres() {
+		List<Produto> listaTodos = dao.buscaTextualPorNome("test");
+		
+		System.out.println("Lista Textual");
+		for (Produto usuario : listaTodos) {
+			System.out.println(usuario.getNome());
+		}
+		System.out.println("-------------");
 		
 		assertTrue(listaTodos.size() > 0);
 	}
