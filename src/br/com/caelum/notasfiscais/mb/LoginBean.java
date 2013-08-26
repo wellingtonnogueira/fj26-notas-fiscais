@@ -12,37 +12,36 @@ import br.com.caelum.notasfiscais.modelo.Usuario;
 public class LoginBean implements Serializable {
 
 	private UsuarioLogado usuarioLogado;
+	private RedirecionadorBean redirecionadorBean;
 
 	private static final long serialVersionUID = 3258128530136373961L;
-	private static String LOGIN_PAGE = "login";
-	
-	private String toPage = LOGIN_PAGE;
 	
 
 	public LoginBean() {
 	}
 
 	@Inject
-	public LoginBean(UsuarioLogado usuarioLogado) {
+	public LoginBean(UsuarioLogado usuarioLogado, RedirecionadorBean redirecionadorBean) {
 		this.usuarioLogado = usuarioLogado;
+		this.redirecionadorBean = redirecionadorBean;
 	}
 
 	public String efetuaLogin() {
 		
 		if(!usuarioLogado.efetuaLogin()) {
-			setToPage(LOGIN_PAGE);
+			redirecionadorBean.defaultPage();
 		} else if(getToPage().contains("login")) {
 			setToPage("produto");
 		}
-		return getToPage() + "?faces-redirect=true";
+		return redirecionadorBean.redirect();
 	}
 	
 	public String efetuaLogout() {
 		
 		usuarioLogado.efetuaLogout();
 		
-		setToPage(LOGIN_PAGE);
-		return "login?faces-redirect=true";
+		redirecionadorBean.defaultPage();
+		return redirecionadorBean.redirect();
 	}
 	
 	public boolean isLogado() {
@@ -50,11 +49,11 @@ public class LoginBean implements Serializable {
 	}
 	
 	private String getToPage() {
-		return toPage;
+		return redirecionadorBean.getToPage();
 	}
 
 	public void setToPage(String toPage) {
-		this.toPage = toPage;
+		redirecionadorBean.setToPage(toPage);
 	}
 	
 	public Usuario getUsuario() {
